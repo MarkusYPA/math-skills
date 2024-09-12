@@ -4,7 +4,7 @@ math-skills is a Go program and a solution to an exercise of the same name in th
 
 ## usage
 
-The program reads numbers from a provided text file, line by line, and prints statistical values describing to the data set.
+The program reads numbers from a provided text file, line by line, and prints statistical values describing the data set.
 
 The program can be used without compiling it:
 
