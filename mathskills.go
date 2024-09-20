@@ -12,6 +12,7 @@ import (
 func readData(s string) (data []float64) {
 	lines := []string{""}
 	indx := 0
+
 	for _, r := range s {
 		if unicode.IsNumber(r) {
 			lines[indx] += string(r)
@@ -24,6 +25,9 @@ func readData(s string) (data []float64) {
 	}
 
 	for _, s := range lines {
+		if len(s) == 0 {
+			continue
+		}
 		num, e := strconv.ParseFloat(s, 64)
 		if e != nil {
 			fmt.Println(e)
