@@ -65,11 +65,24 @@ func average(d []float64) float64 {
 
 // median returns the median of a slice of float64s
 func median(d []float64) float64 {
+	d = bubSort(d)
 	if len(d)%2 == 0 {
 		return (d[len(d)/2] + d[(len(d)/2)-1]) / 2
 	} else {
 		return d[len(d)/2]
 	}
+}
+
+// bubSort is a bubble sort function that arranges a slice of float64s from smallest to largest
+func bubSort(d []float64) []float64 {
+	for i := 0; i < len(d)-1; i++ {
+		for j := i + 1; j < len(d); j++ {
+			if d[i] > d[j] {
+				d[i], d[j] = d[j], d[i]
+			}
+		}
+	}
+	return d
 }
 
 // variance returns the variance of a slice of float64s

@@ -18,3 +18,27 @@ Compiling it to an executable is another option:
 go build
 ./mathskills data.txt
 ```
+
+## Docker testing
+
+Make sure Docker is installed and the provided .zip -file is unpacked.
+
+Navigate to the stat-bin folder and run this command:
+```bash
+run.sh math-skills
+```
+
+The first time, it will build the application, make a data.txt -file and produce an output. On subsequent runs, it will write data.txt over and produce the output.
+
+Navigate to the project folder (math-skills/) and make an executable:
+```bash
+go build .
+```
+
+Move the executable to the stat-bin folder. Now compare the outputs of the two programs:
+```bash
+./run.sh math-skills
+./mathskills data.txt
+```
+
+They should be the same.
