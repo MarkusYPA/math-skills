@@ -14,7 +14,7 @@ func readData(s string) (data []float64) {
 	indx := 0
 
 	for _, r := range s {
-		if unicode.IsNumber(r) {
+		if unicode.IsNumber(r) || r == '-' {
 			lines[indx] += string(r)
 		}
 
@@ -65,24 +65,28 @@ func average(d []float64) float64 {
 
 // median returns the median of a slice of float64s
 func median(d []float64) float64 {
-	d = bubSort(d)
-	if len(d)%2 == 0 {
-		return (d[len(d)/2] + d[(len(d)/2)-1]) / 2
+	ds := bubSort(d)
+	if len(ds)%2 == 0 {
+		return (ds[len(d)/2] + ds[(len(d)/2)-1]) / 2
 	} else {
-		return d[len(d)/2]
+		return ds[len(d)/2]
 	}
 }
 
-// bubSort is a bubble sort function that arranges a slice of float64s from smallest to largest
+// bubSort is a bubble sort function that returns an arranged version
+// of a slice of float64s d, from smallest to largest
 func bubSort(d []float64) []float64 {
-	for i := 0; i < len(d)-1; i++ {
-		for j := i + 1; j < len(d); j++ {
-			if d[i] > d[j] {
-				d[i], d[j] = d[j], d[i]
+	ds := make([]float64, len(d))
+	copy(ds, d)
+
+	for i := 0; i < len(ds)-1; i++ {
+		for j := i + 1; j < len(ds); j++ {
+			if ds[i] > ds[j] {
+				ds[i], ds[j] = ds[j], ds[i]
 			}
 		}
 	}
-	return d
+	return ds
 }
 
 // variance returns the variance of a slice of float64s
