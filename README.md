@@ -25,7 +25,7 @@ Make sure Docker is installed and the provided .zip -file is unpacked.
 
 Navigate to the stat-bin folder and run this command:
 ```bash
-run.sh math-skills
+./run.sh math-skills
 ```
 
 The first time, it will build the application, make a data.txt -file and produce an output. On subsequent runs, it will write data.txt over and produce the output.

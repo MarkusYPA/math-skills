@@ -99,7 +99,10 @@ func variance(d []float64) float64 {
 // the Babylonian method a.k.a. Newton's method
 func sqrt(x float64) float64 {
 	if x < 0 {
-		return -1
+		return -1.0
+	}
+	if x == 0 {
+		return 0.0
 	}
 
 	// start with a guess
