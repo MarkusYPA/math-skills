@@ -54,8 +54,8 @@ func roundToInt(f float64) int {
 	}
 }
 
-// average returns the mean of a slice of float64s
-func average(d []float64) float64 {
+// mean returns the mean of a slice of float64s
+func mean(d []float64) float64 {
 	sum := 0.0
 	for _, v := range d {
 		sum += v
@@ -73,8 +73,8 @@ func median(d []float64) float64 {
 	}
 }
 
-// bubSort is a bubble sort function that returns an arranged version
-// of a slice of float64s d, from smallest to largest
+// bubSort is a bubble sort function that returns an new
+// slice of float64s d, sorted from smallest to largest
 func bubSort(d []float64) []float64 {
 	ds := make([]float64, len(d))
 	copy(ds, d)
@@ -92,7 +92,7 @@ func bubSort(d []float64) []float64 {
 // variance returns the variance of a slice of float64s
 func variance(d []float64) float64 {
 	sumOfSqOfDiff := 0.0
-	avg := average(d)
+	avg := mean(d)
 	for _, f := range d {
 		sumOfSqOfDiff += (f - avg) * (f - avg)
 	}
@@ -110,16 +110,17 @@ func sqrt(x float64) float64 {
 	}
 
 	// start with a guess
-	z := x
-	const tolerance = 1e-10 // how precise you want the result to be
+	guess := x
+	const tolerance = 1e-10 // precision is 0.0000000001
+
 	for {
-		nextZ := 0.5 * (z + x/z)
-		if abs(z-nextZ) < tolerance { // Stop when the change is smaller than the tolerance
+		nextG := 0.5 * (guess + x/guess)  // (x+1)/2 on the first try
+		if abs(guess-nextG) < tolerance { // Stop when the change is smaller than the tolerance
 			break
 		}
-		z = nextZ
+		guess = nextG
 	}
-	return z
+	return guess
 }
 
 // abs calculates the absolute value of a float64
@@ -155,7 +156,7 @@ func main() {
 
 	data := readData(string(dataBytes))
 
-	fmt.Println("Average:", roundToInt(average(data)))
+	fmt.Println("Average:", roundToInt(mean(data)))
 	fmt.Println("Median:", roundToInt(median(data)))
 	fmt.Println("Variance:", roundToInt(variance(data)))
 	fmt.Println("Standard deviation:", roundToInt(sqrt(variance(data))))

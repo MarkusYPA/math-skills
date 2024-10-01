@@ -21,7 +21,7 @@ go build
 
 ## Docker testing
 
-Make sure Docker is installed and the provided .zip -file is unpacked.
+Make sure Docker is installed and running and that the provided .zip -file is unpacked.
 
 Navigate to the stat-bin folder and run this command:
 ```bash
