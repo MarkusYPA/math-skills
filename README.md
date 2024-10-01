@@ -2,7 +2,7 @@
 
 math-skills is a Go program and a solution to an exercise of the same name in the 01-edu curriculum.
 
-## usage
+## Usage
 
 The program reads numbers from a provided text file, line by line, and prints statistical values describing the data set.
 
@@ -32,7 +32,7 @@ The first time, it will build the application, make a data.txt -file and produce
 
 Navigate to the project folder (math-skills/) and make an executable:
 ```bash
-go build .
+go build
 ```
 
 Move the executable to the stat-bin folder. Now compare the outputs of the two programs:
