@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"strconv"
 	"unicode"
@@ -30,8 +31,7 @@ func readData(s string) (data []float64) {
 		}
 		num, e := strconv.ParseFloat(s, 64)
 		if e != nil {
-			fmt.Println(e)
-			return nil
+			continue
 		}
 		if s != "" {
 			data = append(data, num)
@@ -134,26 +134,20 @@ func abs(f float64) float64 {
 // main prints out statistical values of a data set given as an argument
 func main() {
 	args := os.Args[1:]
-	var dataFile *os.File
 
-	if len(args) == 1 {
-		df, err := os.Open(args[0])
-		if err != nil {
-			fmt.Println(err)
-			os.Exit(1)
-		}
-		dataFile = df
-	} else {
+	if len(args) != 1 {
 		fmt.Println("Provide datafile")
 		return
 	}
 
+	dataFile, err := os.Open(args[0])
+	if err != nil {
+		log.Fatalln(err.Error())
+	}
 	dataBytes, err := io.ReadAll(dataFile)
 	if err != nil {
-		fmt.Println(err.Error())
-		os.Exit(1)
+		log.Fatalln(err.Error())
 	}
-
 	data := readData(string(dataBytes))
 
 	fmt.Println("Average:", roundToInt(mean(data)))
