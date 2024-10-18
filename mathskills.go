@@ -150,6 +150,10 @@ func main() {
 	}
 	data := readData(string(dataBytes))
 
+	if len(data) == 0 {
+		log.Fatalln("No valid data found")
+	}
+
 	fmt.Println("Average:", roundToInt(mean(data)))
 	fmt.Println("Median:", roundToInt(median(data)))
 	fmt.Println("Variance:", roundToInt(variance(data)))
