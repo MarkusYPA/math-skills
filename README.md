@@ -6,13 +6,13 @@ math-skills is a Go program and a solution to an exercise of the same name in th
 
 The program reads numbers from a provided text file, line by line, and prints statistical values describing the data set.
 
-The program can be used without compiling it:
+The program can be run directly:
 
 ```bash
 go run . "data.txt"
 ```
 
-Compiling it to an executable is another option:
+Making an executable is another option:
 
 ```bash
 go build
